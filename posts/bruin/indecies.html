@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Shuma">
-<meta name="dcterms.date" content="2025-01-24">
+<meta name="author" content="Shuma Jensen">
+<meta name="dcterms.date" content="2025-01-21">
 
-<title>Visualizing Palmer Penguins – myblog</title>
+<title>Creating posts – myblog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -115,10 +144,10 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Visualizing Palmer Penguins</h1>
+      <h1 class="title">Creating posts</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">data visualization</div>
-                <div class="quarto-category">penguins</div>
+                <div class="quarto-category">week 3</div>
+                <div class="quarto-category">example</div>
               </div>
                   </div>
   </div>
@@ -129,14 +158,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Shuma </p>
+               <p>Shuma Jensen </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 24, 2025</p>
+        <p class="date">January 21, 2025</p>
       </div>
     </div>
     
@@ -155,25 +184,14 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>The <strong>Palmer Penguins</strong> dataset is a popular dataset for practicing data analysis and visualization. It contains measurements for three species of penguins observed in the Palmer Archipelago, Antarctica. This tutorial will show you how to create an interesting visualization using Python.</p>
-</section>
-<section id="loading-the-data" class="level1">
-<h1>Loading the Data</h1>
-<p>First, let’s load the data into a Pandas DataFrame. Here’s the code:</p>
-<p>```python # Import libraries import pandas as pd import matplotlib.pyplot as plt from plotly import express as px</p>
-<p>#Then you would want to clean the dataframe and drop information that is not wanted. url = “https://raw.githubusercontent.com/pic16b-ucla/24W/main/datasets/palmer_penguins.csv” penguins = pd.read_csv(url) penguins = penguins.dropna(subset = [“Body Mass (g)”, “Sex”]) penguins[“Species”] = penguins[“Species”].str.split().str.get(0) penguins = penguins[penguins[“Sex”] != “.”]</p>
-<p>cols = [“Species”, “Island”, “Sex”, “Culmen Length (mm)”, “Culmen Depth (mm)”, “Flipper Length (mm)”, “Body Mass (g)”] penguins = penguins[cols]</p>
-<p>#Then using a scatter plot you would want to graph the penguins using their Culumen Depth and thier Culmen length</p>
-<p>fig = px.scatter(data_frame = penguins, x = “Culmen Length (mm)”, y = “Culmen Depth (mm)”, color = “Species”, size = “Body Mass (g)”, size_max = 8, hover_name = “Species”, hover_data = [“Island”, “Sex”],</p>
-</section>
-<section id="reduce-whitespace" class="level1">
-<h1>reduce whitespace</h1>
-<p>fig.update_layout(margin={“r”:0,“t”:0,“l”:0,“b”:0}) # show the plot fig.show()</p>
+<p><span class="math display">\[
+\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+\]</span></p>
+<p><img src="https://xkcd.com/353/.png" class="img-fluid" alt="xkcd Humor"> (Source: https://xkcd.com/353/)</p>
+<p>def f(x): ““” A cool function. ““” return 2 * x</p>
+<p>y = f(3) print(y)</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -266,7 +284,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/Momoinu13\.github\.io\/HW0\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
